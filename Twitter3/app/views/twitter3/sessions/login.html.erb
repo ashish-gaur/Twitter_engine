@@ -1,0 +1,39 @@
+
+<% content_for :title, "Login" %>
+
+<div class="login" xmlns="http://www.w3.org/1999/html">
+    <h1>Log In</h1>
+    <br>
+    <%= form_tag login_path,:id => 'loginform' do %>
+        <p>
+            <span class = "login_text_field">
+                Username or Email :
+            </span>
+            <br>
+            <span class="login_field">
+                <%= text_field_tag :username_or_email,nil , :id => 'user_username_or_email' %>
+            </span>
+        </p>
+        <p>
+            <span class = "login_text_field">
+                Password :
+            </span>
+            <br>
+            <span class = "login_field">
+                <%= password_field_tag :login_password, nil, :id =>  'user_login_password'%>
+            </span>
+        </p>
+        <span class="login_button">
+            <%= submit_tag('Log in') %>
+        </span>
+    <% end %>
+     <span class="signup_button">
+        <%= button_to "Sign Up", :controller => 'users', :action => 'new' %>
+    </span>
+    <br />
+    <br/>
+    <br/>
+    <% unless @message.blank? %>
+        <%=h @message  %>
+    <% end %>
+</div>

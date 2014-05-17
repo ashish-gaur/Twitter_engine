@@ -1,0 +1,30 @@
+<% content_for :title, "Edit" %>
+
+<%= form_for @current_user, :url => {:action => 'update'}, :html => { :id => 'editform' } do |u| %>
+    <%= u.label :username%><br />
+    <%= u.text_field :username, :id => 'user_username' %>   <br />
+
+    <%= u.label :email%>           <br />
+    <%= u.text_field :email, :id => 'user_email'%>       <br />
+
+    <%= u.label :password %>         <br />
+    <%= u.password_field :password, :id => 'user_password' %>   <br />
+
+    <%= u.label :confirm %> <br />
+    <%= u.password_field :password_confirmation, :id => 'user_password_confirmation' %>
+
+    <br />
+    <%= submit_tag 'update'%>
+
+<% end %>
+
+<% if @current_user.errors.any? %>
+    <ul class="Signup_Errors">
+        <% for message_error in @current_user.errors.full_messages %>
+            <li>* <%= message_error %></li>
+        <% end %>
+    </ul>
+<% else %>
+   <% h 'You have successfully updated your profile' %>
+
+<% end %>

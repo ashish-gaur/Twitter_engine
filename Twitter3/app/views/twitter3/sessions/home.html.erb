@@ -1,0 +1,42 @@
+<% content_for :title, "Home" %>
+
+<br>
+<span class="tweet_heading">Tweet about something</span>
+<%= form_tag tweet_path, :id => 'tweet_content' do  %>
+        <%= text_area_tag 'tweet',nil,:class => "tweet_box box", :id =>"tweet_box_id"  %>  <br />
+    <%= submit_tag 'tweet'%>
+<% end %>
+<br>
+<br>
+
+<% unless @add_tweet.nil? %>
+    <% if @add_tweet.errors.any? %>
+        <ul class="error">
+            <% for message_error in @add_tweet.errors.full_messages %>
+                <li >* <%= message_error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+<% end %>
+
+<table>
+    <% i = 1 %>
+    <%= will_paginate @paginated_tweet %>
+    <% (@paginated_tweet.zip(@time)).each do |t, time| %>
+        <tr>
+            <td>
+                <%=link_to t.user.username,profile_path(:id => t.user.id), :class => 'profile_link_home'%><br>
+                <% elapsed_id = 'time_elapsed' + i.to_s %>
+                <% full_id = 'time_full' + i.to_s %>
+                <% i += 1 %>
+                <%= label_tag 'created_at',time ,:class => 'created_at', :class => 'created_at time_elapsed',:id => elapsed_id  %>
+                <%= label_tag 'created_at',t.created_at.in_time_zone('New Delhi').to_s[0..-6] ,:class => 'created_at time_full', :id => full_id  %>
+
+            </td>
+            <td>
+                <%=label_tag 'tweet', t.tweet, :class => 'user_tweet' %>
+            </td>
+        </tr>
+    <% end %>
+
+</table>

@@ -1,0 +1,64 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//login page
+
+.error{
+  font-size: 90%;
+  font-style: normal;
+}
+
+.box{
+  border: 2px solid #cccccc;
+  -moz-border-radius: 15px;
+  border-radius: 10px;
+}
+
+.button{
+
+}
+
+.login{
+  position: relative;
+  width: 250px;
+  height: 230px;
+  left: 40%;
+  right: 40%;
+  top: 0%;
+  padding-left: 5px;
+  background-color: #0099FF;
+  //margin-top: 50px;
+  //margin-right: 420px;
+  //margin-left: 420px;
+  //margin-right: 52px;
+  //margin-left: 52px;
+}
+
+.login_button{
+  float: left;
+  padding-left: 10px;
+}
+
+.login_text_field{
+  padding: 10px;
+}
+
+.login_field{
+  float: left;
+  padding: 10px;
+}
+
+.signup_button{
+  float: left;
+  //padding-right: 20px;
+}
+
+//signup page
+
+.signup{
+  padding-left: 10px;
+  height: 350px;
+  width: 350px;
+}

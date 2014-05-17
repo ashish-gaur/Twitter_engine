@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Hello <%= @following.username %></h1>
+<p> <%= @follower.username %> wants to follow you</p>
+<% acc_url = "http://localhost:3000/accept_request?token=" + @token %>
+<% den_url = "http://localhost:3000/deny_request?token=" + @token %>
+<p> <%= link_to 'accept', acc_url %> <%= link_to 'deny', den_url %></p>
+</body>
+</html>

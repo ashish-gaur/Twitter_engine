@@ -1,0 +1,99 @@
+<% content_for :title, "Network" %>
+
+<div class="left_div">
+    <div id="network_followers_div">
+        <h1 class="network_heading"> Your Followers</h1><br>
+        <br>
+        <% unless @follower.nil? or @follower.empty? %>
+            <%= will_paginate @paginated_follower %>
+            <% @paginated_follower.each do |f|%>
+                 <%=link_to f.username,:id => f.id, :use_route => 'profile', :class => 'network_profiles' %></td>
+                </tr>
+
+            <% end %>
+
+        <% else%>
+            <ul><li>You don't have any followers  </li></ul>
+        <% end %>
+
+
+    </div>
+    <br>
+    <br />
+    <div id="network_following_div">
+        <h1 class = "network_heading">You are following</h1>
+        <br>
+        <% unless @following.nil? or @following.empty? %>
+            <%= will_paginate @paginated_following %>
+            <% @paginated_following.each do |f|%>
+                <ul>
+                    <li> <%=link_to f.username,:id => f.id, :use_route => 'profile', :class => 'network_profiles' %></li>
+                </ul>
+
+            <% end %>
+
+        <% else%>
+            <ul><li>You are not following anybody </li></ul>
+        <% end %>
+    </div>
+    <div id=search_div>
+        <span>Search user</span>
+        <div id="search_form">
+            <%= form_tag do %>
+                <input id = "select_user">      <br>
+                <input id = "link_user_id" name = "link[user_id]" type="hidden">
+                <ul id="options"></ul>
+                <!--<label id="error_message"></label>-->
+
+            <% end %>
+        </div>
+    </div>
+
+    <br /><br />
+</div>
+
+<div id="right_div">
+<div id="network_request_div">
+    <h1 class = "network_heading"> Requests</h1>
+    <br>
+    <% unless @requests.nil? or @requests.empty? %>
+        <%= will_paginate @paginated_requests %>
+        <% @paginated_requests.each do |f|%>
+            <ul>
+                <li><%= link_to f.username,:id => f.id, :use_route => 'profile', :class => 'network_profiles' %></li>
+                <li> <%= link_to 'cancel', cancel_path(:id => f.id) %> </li>
+            </ul>
+        <% end %>
+
+    <% else%>
+        <ul>
+            <li>You requested nobody yet</li>
+        </ul>
+    <% end %>
+
+</div>
+
+
+<br>
+
+<br>
+<div id="network_notification_div">
+    <h1 class = "network_heading "> Notifications</h1>
+    <br>
+    <% unless @notifications.nil? or @notifications.empty? %>
+        <%= will_paginate @paginated_notifications %>
+        <% @paginated_notifications.each do |f|%>
+            <ol>
+                <li> <%= link_to f.username ,profile_path(:id => f.id) %></li>
+                <li> <%= link_to 'accept', accept_path(:id => f.id) %>
+                 <%= link_to 'deny', deny_path(:id => f.id) %></li>
+            </ol>
+        <% end %>
+
+    <% else%>
+        <ul><li>You have no notifications </li></ul>
+    <% end %>
+</div>
+
+</div>
+<br /><br /><br>

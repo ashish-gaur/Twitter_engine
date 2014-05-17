@@ -1,0 +1,32 @@
+<% content_for :title, "User Profile" %>
+
+<h1>Profile</h1>
+
+<table>
+    <% unless @profile.nil? %>
+            <tr>
+                <td>Name:</td>
+                <td><%= h @profile.username %></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><%= h @profile.email %></td>
+            </tr>
+    <% end %>
+</table>
+
+<% if @show.blank? %>
+    <%= button_to 'edit',:action => 'edit' %>
+<% else %>
+    <% case @show %>
+        <% when  'request'%>
+            <% url = follow_path(:id => @profile.id) %>
+        <% when 'unfollow' %>
+            <% url = unfollow_path(:id => @profile.id) %>
+        <% when 'cancel' %>
+            <% url = cancel_path(:id => @profile.id) %>
+    <% end %>
+        <%= link_to @show, url %>
+<% end %>
+
+

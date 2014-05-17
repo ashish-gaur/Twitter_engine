@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= h yield(:title) %></title>
+  <%= stylesheet_link_tag    "twitter3/application", :media => "all" %>
+
+  <%= javascript_include_tag "twitter3/application" %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body  class = "page_format">
+    <% if @title.blank? %>
+      <div class="header">
+            <!--Twitter-->
+
+        <span><%= link_to image_tag("twitter3/twitter_logo.jpg", :class => 'logo'),home_path,  :class => 'header_title' %></span>
+        <span>
+            <%= link_to 'Logout', logout_path, :class => 'logout_link header_link' %>
+        </span>
+        <span>
+              <%= link_to 'Home',home_path, :class => 'home_link header_link' %>
+        </span>
+        <span>
+            <%= link_to 'Network',network_path, :class => 'network_link header_link' %>
+        </span>
+
+
+        <span>
+            <%= link_to @current_user.username,profile_path(:id => @current_user.id) ,:class => 'profile_link header_link' %>
+        </span>
+      </div>
+      <div style="clear:both"></div>
+    <% end %>
+
+
+<%= yield %>
+
+</body>
+</html>

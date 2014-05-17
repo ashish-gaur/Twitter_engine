@@ -1,0 +1,6 @@
+
+<%= form_tag confirm_user_path  do %>
+    <div> Please enter the key to activate your account</div>
+    <div> <%= text_field :token, nil %> </div>
+    <div> <%= submit_tag 'Submit' %></div>
+<% end %>
